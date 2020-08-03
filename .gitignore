@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/venv/
+*.log
+weather.iml
+/.pytest/
+/dist/
+/build/
+Programming_Exercise_OWS.pdf
+weather_data_converter.egg-info/
+.idea/
+.*pycache.*
+*.pyc
+*.__pycache__.*
