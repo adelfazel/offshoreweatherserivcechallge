@@ -10,7 +10,8 @@ Input data is assumed to be valid, especially there is no check that the records
 # To use
 * git clone https://github.com/adelfazel/offshoreweatherserivcechallge
 * go to wherever you have downloaded it
-* source venv/bin/activate
+* python3 -m venv env
+* source env/bin/activate
 * make init
 * make test
 * make run
@@ -23,7 +24,7 @@ parser.add_argument("-f", "--inFilename", help="the name of csv file to read fro
 parser.add_argument("-o", "--outFilename", help="the name of csv file to writer to", default="out/result.csv")
 
 e.g.
-python3 src/main.py -a True -o out/averagedResult
+python3 src/main.py -a True -o out/averagedResult.csv
 
 # More notes
 the basic results are added to out/ folder 
