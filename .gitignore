@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 /venv/
-*.log
+/logs/*
 weather.iml
 /.pytest/
 /dist/
