@@ -6,6 +6,15 @@ from writer import writer
 from service.converter import WindRecord
 
 outputHeaders = 'datetime,WindSpeed,WindDir'
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true'):
+        return True
+    elif v.lower() in ('no', 'false'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 def set_logging_params(args):
     log_time_format = "%Y%m%d_%H_%M_%S"
@@ -19,8 +28,8 @@ def set_logging_params(args):
 
 def get_runtime_params():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-v", "--verbose", help="increase output verbosity", default=False)
-    parser.add_argument("-a", "--averageResults", help="average for x minutes of records", default=False)
+    parser.add_argument("-v", "--verbose", help="increase output verbosity", default=False, type=str2bool)
+    parser.add_argument("-a", "--averageResults", help="average for x minutes of records", default=False, type=str2bool)
     parser.add_argument("-s", "--batchSize", help="number of minutes to average", default=10)
     parser.add_argument("-f", "--inFilename", help="the name of csv file to read from", default="data/sample.csv")
     parser.add_argument("-o", "--outFilename", help="the name of csv file to writer to", default="out/result.csv")
@@ -29,6 +38,9 @@ def get_runtime_params():
 
 def run():
     args = get_runtime_params()
+    args.averageResults = str2bool(args.averageResults)
+    args.verbose = str2bool(args.verbose)
+
     set_logging_params(args)
     fileReader = reader.Reader(args)
     fileWirter = writer.Writer(args, outputHeaders)

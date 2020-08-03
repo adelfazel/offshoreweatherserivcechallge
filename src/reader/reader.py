@@ -46,7 +46,8 @@ class Reader:
                             yield self.calculate_average_batch(batch)
                             batch = []
                         batch.append(cleanRecord)
-                yield self.calculate_average_batch(batch)
+                if batch:
+                    yield self.calculate_average_batch(batch)
             else:
                 for record in reader:
                     cleanRecord = self.clean_record(record)
@@ -57,8 +58,8 @@ class Reader:
         if batch:
             res = {}
             res['datetime'] = batch[0]['datetime']
-            batchUComp = reduce(lambda x, y: x['u-comp'] + y['u-comp'], batch)
-            batchVComp = reduce(lambda x, y: x['v-comp'] + y['v-comp'], batch)
+            batchUComp = reduce(lambda x, y: x + y, map(lambda x: x['u-comp'], batch))
+            batchVComp = reduce(lambda x, y: x + y, map(lambda x: x['v-comp'], batch))
             res['u-comp'] = batchUComp / len(batch)
             res['v-comp'] = batchVComp / len(batch)
             return res
@@ -74,5 +75,6 @@ class Reader:
         except Exception as e:
             logger.error(f"unable to process {record}; exception thown {e}")
         return None
+
     def __str__(self):
         return f"file {self.filename} (with headers: {self.headers})"
