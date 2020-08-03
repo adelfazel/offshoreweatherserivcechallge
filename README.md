@@ -25,6 +25,6 @@ parser.add_argument("-o", "--outFilename", help="the name of csv file to writer 
 e.g.
 python3 src/main.py -a True -o out/averagedResult
 
-# more notes
+# More notes
 the basic results are added to out/ folder 
 
