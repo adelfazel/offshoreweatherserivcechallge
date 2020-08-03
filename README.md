@@ -8,13 +8,13 @@ For writing average results, if the final 'batch' of records contains less than 
 Input data is assumed to be valid, especially there is no check that the records are not one minute apart. However the script is resilient threeif it fails to read the record it will discard it. 
 
 # To use
-git clone https://github.com/adelfazel/offshoreweatherserivcechallge
-go to wherever you have downloaded it
-source venv/bin/activate
-make init
-make test
-make run
-python3 src/main.py 
+* git clone https://github.com/adelfazel/offshoreweatherserivcechallge
+* go to wherever you have downloaded it
+* source venv/bin/activate
+* make init
+* make test
+* make run
+* python3 src/main.py 
 
 Parameters to consider to add:
 parser.add_argument("-a", "--averageResults", help="average for x minutes of records", default=False, type=str2bool)
